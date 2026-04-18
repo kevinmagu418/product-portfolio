@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0f0f14;
+  --foreground: #f8f9fa;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-poppins), sans-serif;
+  overflow-x: hidden;
+}
+
+@layer base {
+  * {
+    @apply border-white/10;
+  }
+}
+
+.glow-mesh {
+  background-color: hsla(240, 15%, 7%, 1);
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(338, 100%, 65%, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(338, 100%, 65%, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(338, 100%, 65%, 0.05) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(338, 100%, 65%, 0.1) 0px, transparent 50%);
+}
+
+.glass-card {
+  @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary-glow;
+}
