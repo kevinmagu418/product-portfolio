@@ -32,10 +32,12 @@ export type Project = {
   description: string;
   logo: React.ElementType;
   image?: string;
+  status?: string;
   githubUrl?: string;
   serverGithubUrl?: string;
   liveUrl?: string;
   liveUrlLabel?: string;
+  backendLiveUrl?: string;
   downloadUrl?: string;
   tags: string[];
   images?: string[];
@@ -52,10 +54,11 @@ const projects: Project[] = [
   {
     id: "bingwa-shambani",
     title: "Bingwa Shambani",
-    tagline: "AI-Powered Crop Disease Detection",
-    description: "A real-time mobile solution enabling farmers to detect crop diseases through computer vision and receive localized treatment advice via RAG-based AI.",
+    tagline: "Crop Diseases Classifier and Recommender System",
+    description: "An AI-powered mobile application that classifies crop diseases from leaf images and provides AI-driven personalized treatment recommendations.",
     logo: BrainCircuit,
     image: "/onboard.jpeg",
+    status: "Production",
     githubUrl: "https://github.com/kevinmagu418/Bingwa-expo.git",
     serverGithubUrl: "https://github.com/kevinmagu418/FastApi_server.git",
     liveUrl: "https://expo.dev/accounts/kevinmagu/projects/bingwa-shambani/builds/72488c5e-dc2a-4e1e-9f57-335f46c608b6",
@@ -89,34 +92,39 @@ const projects: Project[] = [
   {
     id: "kazi-radar",
     title: "KaziRadar",
-    tagline: "Autonomous Opportunity Discovery Engine",
-    description: "A production-grade intelligent data pipeline that automates the discovery, extraction, and structuring of global job and grant opportunities using a Modular Micro-Task Architecture.",
+    tagline: "AI Agent for Autonomous Opportunity Discovery",
+    description: "A production-grade intelligent data pipeline acting as an AI Agent, automating the discovery, extraction, and structuring of global job and grant opportunities.",
     logo: Terminal,
+    image: "/applogo.png",
+    status: "Production Ready",
     githubUrl: "https://github.com/kevinmagu418/kazi-radar",
-    liveUrl: "https://kazi-radar.vercel.app",
-    tags: ["Next.js 15", "BullMQ", "LLaMA 3", "LangChain", "Playwright", "Redis"],
+    liveUrl: "https://kazi-radar-agent.vercel.app/",
+    liveUrlLabel: "Frontend App",
+    backendLiveUrl: "https://kazi-radar-agent-2.onrender.com",
+    tags: ["Next.js 15", "BullMQ", "LLaMA 3.3", "LangChain", "Playwright", "Redis"],
+    images: ["/kazintro.png", "/kazi1.png", "/kazi2.png"],
     details: {
       problem: "Fragmented, unstructured opportunity signals across the web make manual discovery labor-intensive and error-prone, resulting in missed signals and messy data.",
-      solution: "A distributed producer-consumer pipeline that uses 10-minute discovery heartbeats and AI-driven JSON structuring to transform raw web signals into actionable intelligence.",
+      solution: "A distributed producer-consumer pipeline that uses discovery heartbeats and AI-driven JSON structuring via Llama 3.3 to transform raw web signals into actionable intelligence.",
       features: [
         "Modular Micro-Task Architecture (BullMQ/Redis)",
-        "AI Heartbeat (2 min) for LLaMA 3 70B Structuring",
+        "AI Heartbeat for LLaMA 3.3 70B Structuring",
         "Headless Ingestion via Playwright (Dynamic React/SPA Support)",
         "12-hour Source Cooldown & High-Priority Scan Bypass",
-        "Real-time System Monitoring via Bull Board & Custom API Health"
+        "Full Pipeline: Next.js Frontend -> Render Backend -> Redis/MongoDB"
       ],
       techStack: [
-        { name: "Node.js (TypeScript)", icon: Terminal, desc: "High-performance runtime for the modular micro-task pipeline." },
-        { name: "BullMQ & Redis", icon: Layers, desc: "Producer-consumer pattern for asynchronous task orchestration and heartbeats." },
-        { name: "LangChain (LLaMA 3 70B)", icon: BrainCircuit, desc: "AI pipeline for JSON extraction, cleaning, and relevance scoring (1-100)." },
-        { name: "Playwright", icon: Search, desc: "Headless Chromium engine for scraping dynamic SPAs and complex web sources." }
+        { name: "Next.js 15 (App Router)", icon: Layers, desc: "Modern, high-performance frontend with Vercel optimization." },
+        { name: "Node.js & BullMQ", icon: Terminal, desc: "Distributed task orchestration for scalable web scraping and processing." },
+        { name: "Llama 3.3 (Groq)", icon: BrainCircuit, desc: "Elite-level AI for structuring raw text into verified JSON objects." },
+        { name: "Playwright", icon: Search, desc: "Industrial-grade browser automation for deep-web opportunity discovery." }
       ],
       architecture: [
-        { icon: Activity, label: "Scheduler", sub: "10m Discovery / 2m AI Cycles" },
-        { icon: Search, label: "Ingestion", sub: "Playwright / API Multi-Fetchers" },
-        { icon: Layers, label: "Queue System", sub: "Redis-backed BullMQ Orchestration" },
-        { icon: BrainCircuit, label: "AI Pipeline", sub: "LLaMA 3 70B / JSON Structuring" },
-        { icon: ShieldCheck, label: "Validation", sub: "12h Cooldown & Integrity Check" }
+        { icon: Activity, label: "Scheduler", sub: "Discovery & AI Cycles" },
+        { icon: Search, label: "Ingestion", sub: "Playwright / Multi-Fetchers" },
+        { icon: Layers, label: "Queue System", sub: "BullMQ / Redis Orchestration" },
+        { icon: BrainCircuit, label: "AI Pipeline", sub: "Llama 3.3 / JSON Structuring" },
+        { icon: Server, label: "Deployment", sub: "Vercel / Render / MongoDB" }
       ]
     }
   }
@@ -154,7 +162,14 @@ export const ProjectShowcase = () => {
             </div>
             
             <div className="p-8">
-              <h3 className="text-2xl font-bold mb-2 group-hover:text-primary transition-colors">{project.title}</h3>
+              <div className="flex justify-between items-start mb-2">
+                <h3 className="text-2xl font-bold group-hover:text-primary transition-colors">{project.title}</h3>
+                {project.status && (
+                  <span className="px-2 py-1 rounded-md bg-green-500/10 text-green-400 text-[10px] font-bold uppercase tracking-wider border border-green-500/20">
+                    {project.status}
+                  </span>
+                )}
+              </div>
               <p className="text-primary-glow text-xs font-bold uppercase tracking-widest mb-4">{project.tagline}</p>
               <p className="text-muted text-sm leading-relaxed mb-6 line-clamp-2">{project.description}</p>
               
@@ -323,6 +338,17 @@ export const ProjectShowcase = () => {
                         >
                           <Smartphone size={20} />
                           {selectedProject.liveUrlLabel || "View Live"}
+                        </a>
+                      )}
+
+                      {selectedProject.backendLiveUrl && (
+                        <a 
+                          href={selectedProject.backendLiveUrl}
+                          target="_blank"
+                          className="w-full py-4 bg-white/5 border border-white/10 text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-white/10 transition-all"
+                        >
+                          <Server size={20} />
+                          Backend Live API
                         </a>
                       )}
                       

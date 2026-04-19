@@ -57,13 +57,13 @@ export default function Home() {
             variants={fadeIn}
             className="text-5xl md:text-7xl font-bold mb-6 tracking-tight"
           >
-            Engineering <span className="text-gradient">Intelligent</span> Solutions
+            Building High-Impact <span className="text-gradient">Autonomous</span> Systems
           </motion.h1>
           <motion.p 
             variants={fadeIn}
             className="text-xl md:text-2xl text-muted max-w-2xl mx-auto mb-10"
           >
-            I build scalable web, mobile, and AI-driven systems that solve real-world problems.
+            I am a <span className="text-white font-semibold">Product Builder</span> who owns the full lifecycle—from raw idea to scalable deployment.
           </motion.p>
           
           <motion.div variants={fadeIn} className="flex flex-wrap justify-center gap-4 mb-16">
@@ -114,7 +114,8 @@ export default function Home() {
             </p>
             <p className="text-lg text-muted mb-8 leading-relaxed">
               My passion lies in fintech innovation and leveraging intelligent systems to solve real-world problems. 
-              I am committed to writing clean, efficient, and production-ready code while maintaining a high standard for system architecture and security.
+              I employ an <span className="text-white font-semibold">AI-native workflow</span> to iterate rapidly and ship high-quality code. 
+              I am committed to writing clean, efficient, and production-ready systems while maintaining full ownership of the end-to-end architecture and security.
             </p>
             
             <div className="grid grid-cols-2 gap-4 mb-8">
